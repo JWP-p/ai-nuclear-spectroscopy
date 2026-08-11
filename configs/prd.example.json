@@ -1,0 +1,13 @@
+{
+  "schema": "prd_configuration_example_v1",
+  "classification": "SYNTHETIC_EXAMPLE_ONLY",
+  "model": "R(E) = a / sqrt(b + E) + c E + d",
+  "parameters": {
+    "a": 5000.0,
+    "b": 100.0,
+    "c": 0.02,
+    "d": 0.0
+  },
+  "calibration_range_keV": [100.0, 1500.0],
+  "warning": "These values are fictional and must not be used for an experiment."
+}

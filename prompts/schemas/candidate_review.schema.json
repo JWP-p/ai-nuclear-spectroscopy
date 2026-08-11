@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JWP-p/ai-nuclear-spectroscopy/raw/main/prompts/schemas/candidate_review.schema.json",
+  "title": "Nuclear-spectroscopy candidate review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "claim",
+    "supporting_evidence",
+    "counterevidence",
+    "recommendation",
+    "confidence",
+    "required_next_action"
+  ],
+  "properties": {
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^CASCADE_[0-9a-f]+$"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "counterevidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": ["REVIEW", "HOLD", "REJECT"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH"]
+    },
+    "required_next_action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    }
+  }
+}

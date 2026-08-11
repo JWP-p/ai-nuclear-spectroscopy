@@ -1,0 +1,75 @@
+{
+  "schema": "ai_nuclear_spectroscopy_demo_v1",
+  "input": {
+    "ensdf_path": "../examples/synthetic_ensdf/fictional_999xx.ens",
+    "source_id": "SYNTHETIC_ENSDF_FIXTURE_V1"
+  },
+  "statistics": {
+    "observations": [
+      {
+        "transition_energy_keV": 1000.0,
+        "signal_window_counts": 1320.0,
+        "background_window_counts": 150.0,
+        "background_scale": 1.0
+      },
+      {
+        "transition_energy_keV": 800.0,
+        "signal_window_counts": 1080.0,
+        "background_window_counts": 140.0,
+        "background_scale": 1.0
+      },
+      {
+        "transition_energy_keV": 700.0,
+        "signal_window_counts": 920.0,
+        "background_window_counts": 130.0,
+        "background_scale": 1.0
+      },
+      {
+        "transition_energy_keV": 500.0,
+        "signal_window_counts": 710.0,
+        "background_window_counts": 125.0,
+        "background_scale": 1.0
+      }
+    ]
+  },
+  "human_gate": {
+    "approved": true,
+    "reviewer": "Synthetic Demo Maintainer",
+    "scope": "SYNTHETIC_DEMO_ONLY",
+    "approved_utc": "2026-08-11T00:00:00Z"
+  },
+  "gcd": {
+    "prd_model": {
+      "a": 5000.0,
+      "b": 100.0,
+      "c": 0.02,
+      "d": 0.0,
+      "energy_min_keV": 100.0,
+      "energy_max_keV": 1500.0
+    },
+    "fit_points": [
+      [300.0, 600.0, 5.0],
+      [500.0, 900.0, 5.0],
+      [700.0, 1000.0, 5.0],
+      [1100.0, 400.0, 5.0],
+      [1300.0, 800.0, 5.0]
+    ],
+    "synthetic_mean_life_ps": 140.0,
+    "anti_center_ps": -120.0,
+    "spectrum": {
+      "amplitude": 2500.0,
+      "sigma_ps": 220.0,
+      "time_min_ps": -4000.0,
+      "time_max_ps": 4000.0,
+      "bin_width_ps": 20.0,
+      "scale_x": 0.4,
+      "scale_y": 0.45,
+      "scale_xy": 0.18
+    },
+    "centroid": {
+      "half_width_ps": 1200.0,
+      "max_iterations": 20,
+      "tolerance_ps": 0.01
+    }
+  }
+}

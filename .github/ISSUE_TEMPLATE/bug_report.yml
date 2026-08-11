@@ -1,0 +1,45 @@
+name: Bug report
+description: Report reproducible software behavior that differs from the documented contract.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include credentials, private paths, restricted experimental data,
+        or unpublished collaboration material.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or commit hash
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Use synthetic or public redistributable inputs only.
+    validations:
+      required: true
+  - type: textarea
+    id: scientific_scope
+    attributes:
+      label: Affected scientific convention
+      description: State whether this concerns identity, placement, gate direction, subtraction, centroid, PRD, uncertainty, or status promotion.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public-data confirmation
+      options:
+        - label: I removed secrets, private paths, and restricted experimental material.
+          required: true

@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+*.so
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Generated demo and analysis products
+demo-output/
+artifacts/
+cache/
+downloads/
+local-data/
+
+# Experimental and binary data must never enter this repository
+*.root
+*.h5
+*.hdf5
+*.parquet
+*.xlsx
+*.xls
+*.pptx
+*.key
+*.pem
+*.p12
+*.pfx
+known_hosts
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+credentials*
+secrets*

@@ -1,0 +1,13 @@
+{
+  "schema": "detector_configuration_example_v1",
+  "classification": "EXAMPLE_ONLY_NOT_AN_EXPERIMENTAL_CONFIGURATION",
+  "energy_units": "keV",
+  "time_units": "ps",
+  "labr3_peak_half_width_keV": 12.0,
+  "hpge_peak_half_width_keV": 3.0,
+  "centroid_half_width_ps": 1200.0,
+  "notes": [
+    "Replace every value with detector-specific calibrations.",
+    "Do not treat these illustrative widths as universal physics constants."
+  ]
+}

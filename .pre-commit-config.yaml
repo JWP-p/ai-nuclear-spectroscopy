@@ -1,0 +1,14 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.2
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: public-surface-audit
+        name: public surface audit
+        entry: python tools/public_surface_audit.py
+        language: system
+        pass_filenames: false

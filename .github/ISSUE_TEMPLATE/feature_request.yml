@@ -1,0 +1,42 @@
+name: Feature request
+description: Propose a traceable improvement to the workflow or public interface.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Scientific or user need
+      description: What decision or workflow boundary should become easier to inspect?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed contract
+      description: Describe inputs, outputs, invariants, and failure behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and references
+      description: Link public sources and state which parts are inference.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: What synthetic fixtures, tests, or independent checks would establish correct behavior?
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Boundary confirmation
+      options:
+        - label: This proposal does not require publishing restricted data or secrets.
+          required: true
+        - label: This proposal preserves an explicit human scientific-approval boundary.
+          required: true

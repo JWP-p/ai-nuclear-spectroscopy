@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-nuclear-spectroscopy"
+version = "0.1.0"
+description = "An auditable human-AI workflow for nuclear-data screening and gamma-ray lifetime analysis."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "PanDa"}]
+keywords = [
+  "nuclear spectroscopy",
+  "ENSDF",
+  "NNDC",
+  "gamma-gamma coincidence",
+  "GCD lifetime",
+  "AI for science",
+  "scientific agents",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = []
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6.0"]
+root = ["uproot>=5.0", "numpy>=1.26"]
+openai = ["openai>=1.0"]
+dev = ["pytest>=8.0", "ruff>=0.6", "build>=1.2"]
+
+[project.scripts]
+anspec = "ai_nuclear_spectroscopy.cli:main"
+
+[project.urls]
+Documentation = "https://github.com/JWP-p/ai-nuclear-spectroscopy/tree/main/docs"
+Issues = "https://github.com/JWP-p/ai-nuclear-spectroscopy/issues"
+Source = "https://github.com/JWP-p/ai-nuclear-spectroscopy"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

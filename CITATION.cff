@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it and cite the nuclear-data evaluations used in your analysis separately."
+title: "AI Nuclear Spectroscopy: An Auditable Human-AI Workflow for Nuclear-Data Screening and GCD Lifetime Analysis"
+type: software
+authors:
+  - family-names: "PanDa"
+    affiliation: "Home"
+repository-code: "https://github.com/JWP-p/ai-nuclear-spectroscopy"
+url: "https://github.com/JWP-p/ai-nuclear-spectroscopy"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-08-11
+abstract: >-
+  A provenance-first reference implementation connecting NNDC/ENSDF data
+  retrieval, source-local gamma-cascade screening, experimental-statistics
+  assessment, structured scientific-agent review, explicit human approval,
+  and generalized centroid-difference lifetime estimation.
+keywords:
+  - nuclear spectroscopy
+  - gamma-gamma coincidence
+  - ENSDF
+  - NNDC
+  - GCD lifetime
+  - AI for science
+  - scientific agents
