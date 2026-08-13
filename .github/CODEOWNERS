@@ -1,0 +1,4 @@
+# Default review owner for every public path.
+# Add a contributor here only after their core-maintainer role and repository
+# access have been explicitly confirmed.
+* @JWP-p
