@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import re
 import sys
-import tomllib
 from pathlib import Path
 
 
@@ -14,8 +13,14 @@ INIT_VERSION_RE = re.compile(r'^__version__\s*=\s*["\']([^"\']+)["\']', re.MULTI
 
 
 def validate(root: Path) -> list[str]:
-    pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
-    project_version = str(pyproject["project"]["version"])
+    pyproject = (root / "pyproject.toml").read_text(encoding="utf-8")
+    version_match = re.search(
+        r"(?ms)^\[project\].*?^version\s*=\s*[\"']([^\"']+)[\"']",
+        pyproject,
+    )
+    if not version_match:
+        return ["pyproject.toml has no project version"]
+    project_version = version_match.group(1)
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
     changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
     init = (root / "src" / "ai_nuclear_spectroscopy" / "__init__.py").read_text(
@@ -29,7 +34,8 @@ def validate(root: Path) -> list[str]:
         errors.append("CITATION.cff has no version field")
     elif citation_match.group(1) != project_version:
         errors.append(
-            f"CITATION.cff version {citation_match.group(1)!r} != project version {project_version!r}"
+            "CITATION.cff version "
+            f"{citation_match.group(1)!r} != project version {project_version!r}"
         )
     if not init_match:
         errors.append("package __version__ is missing")
@@ -50,9 +56,11 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    version = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"][
-        "version"
-    ]
+    pyproject = (root / "pyproject.toml").read_text(encoding="utf-8")
+    version = re.search(
+        r"(?ms)^\[project\].*?^version\s*=\s*[\"']([^\"']+)[\"']",
+        pyproject,
+    ).group(1)
     print(f"RELEASE METADATA: PASS (version {version})")
     return 0
 
