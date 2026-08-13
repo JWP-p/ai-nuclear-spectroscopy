@@ -4,6 +4,10 @@ All notable project changes will be documented here. The format follows the prin
 
 ## [Unreleased]
 
+### Changed
+
+- Added project governance, default code ownership, contributor onboarding guidance, and release-metadata validation in CI.
+
 ### Planned
 
 - Detector-adapter interfaces and validation fixtures.
