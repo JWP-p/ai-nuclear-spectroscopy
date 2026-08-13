@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """Check that the public version markers agree before a release or merge."""
 
+import pathlib
 import re
 import sys
-from pathlib import Path
 
 
 VERSION_RE = re.compile(r'^version:\s*["\']?([^"\'\s]+)', re.MULTILINE)
 INIT_VERSION_RE = re.compile(r'^__version__\s*=\s*["\']([^"\']+)["\']', re.MULTILINE)
 
 
-def validate(root: Path) -> list[str]:
+def validate(root: pathlib.Path) -> list[str]:
     pyproject = (root / "pyproject.toml").read_text(encoding="utf-8")
     version_match = re.search(
         r"(?ms)^\[project\].*?^version\s*=\s*[\"']([^\"']+)[\"']",
@@ -47,7 +47,7 @@ def validate(root: Path) -> list[str]:
 
 
 def main() -> int:
-    root = Path(__file__).resolve().parents[1]
+    root = pathlib.Path(__file__).resolve().parents[1]
     errors = validate(root)
     if errors:
         print("RELEASE METADATA: FAIL")
