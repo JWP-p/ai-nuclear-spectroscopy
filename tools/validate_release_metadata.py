@@ -5,7 +5,6 @@ import pathlib
 import re
 import sys
 
-
 VERSION_RE = re.compile(r'^version:\s*["\']?([^"\'\s]+)', re.MULTILINE)
 INIT_VERSION_RE = re.compile(r'^__version__\s*=\s*["\']([^"\']+)["\']', re.MULTILINE)
 
