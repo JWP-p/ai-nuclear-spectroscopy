@@ -161,7 +161,15 @@ Version `0.1.0` is an **alpha reference workflow**. Its synthetic vertical slice
 
 ## Contributing
 
-Contributions that improve auditability, physical correctness, test coverage, documentation, or interoperability are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), follow [SECURITY.md](SECURITY.md) for sensitive reports, and preserve the project's evidence-first and human-approval boundaries.
+Contributions that improve auditability, physical correctness, test coverage, documentation, or interoperability are welcome. The fastest way to start is:
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [GOVERNANCE.md](GOVERNANCE.md).
+2. Choose a focused issue or propose one before changing a scientific contract.
+3. Use a branch and pull request; keep synthetic fixtures clearly synthetic.
+4. Run `pytest`, `ruff check .`, `python tools/public_surface_audit.py`, and `python tools/validate_release_metadata.py`.
+5. Describe evidence, counterevidence, uncertainty, and remaining scope in the pull request.
+
+Good first contribution areas include ENSDF edge-case tests, GCD/PRD validation, synthetic ROOT/uproot adapters, agent-schema evaluation, and documentation. Read [SECURITY.md](SECURITY.md) for sensitive reports, and preserve the project's evidence-first and human-approval boundaries.
 
 ## Citation
 
