@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Check that the public version markers agree before a release or merge."""
 
-from __future__ import annotations
-
 import re
 import sys
 from pathlib import Path
