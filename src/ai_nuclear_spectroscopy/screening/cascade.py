@@ -36,7 +36,16 @@ def _intensity_score(
     transitions: tuple[Transition, Transition, Transition],
     maximum: float,
 ) -> float:
-    ratios = [transition.intensity / maximum for transition in transitions if transition.intensity]
+    if maximum <= 0 or not math.isfinite(maximum):
+        raise ValueError("maximum transition intensity must be finite and positive")
+    intensities = [transition.intensity for transition in transitions]
+    if any(
+        intensity is not None
+        and (not math.isfinite(intensity) or intensity < 0)
+        for intensity in intensities
+    ):
+        raise ValueError("transition intensities must be finite and non-negative")
+    ratios = [intensity / maximum for intensity in intensities if intensity is not None]
     return math.prod(ratios) ** (1.0 / len(ratios)) if ratios else 0.0
 
 
@@ -66,10 +75,16 @@ def enumerate_cascades(dataset: Dataset) -> list[CascadeCandidate]:
     level_by_id = {level.level_id: level for level in dataset.levels}
     outgoing: dict[str, list[Transition]] = defaultdict(list)
     usable = [transition for transition in dataset.transitions if _is_usable(transition)]
+    if any(
+        transition.intensity is not None
+        and (not math.isfinite(transition.intensity) or transition.intensity < 0)
+        for transition in usable
+    ):
+        raise ValueError("transition intensities must be finite and non-negative")
     for transition in usable:
         outgoing[transition.initial_level_id].append(transition)
     maximum = max(
-        (transition.intensity or 0.0 for transition in usable),
+        (transition.intensity for transition in usable if transition.intensity is not None),
         default=0.0,
     )
     maximum = maximum or 1.0
