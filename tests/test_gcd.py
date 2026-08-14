@@ -26,6 +26,19 @@ def test_four_region_inclusion_exclusion_and_variance() -> None:
     assert all(value > 0 for value in result.variances)
 
 
+def test_four_region_rejects_negative_raw_counts() -> None:
+    with pytest.raises(ValueError, match="non-negative counts"):
+        four_region_subtract(
+            [-1.0],
+            [2.0],
+            [2.0],
+            [1.0],
+            scale_x=1.0,
+            scale_y=1.0,
+            scale_xy=1.0,
+        )
+
+
 def test_signed_iterative_centroid_recovers_peak() -> None:
     times = [float(value) for value in range(-1000, 1001, 20)]
     weights = [1000.0 * math.exp(-0.5 * ((time - 140.0) / 120.0) ** 2) for time in times]
