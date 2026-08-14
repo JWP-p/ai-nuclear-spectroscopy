@@ -14,6 +14,13 @@ from .ensdf import parse_ensdf
 from .workflow import run_demo
 
 
+def _non_negative_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 0:
+        raise argparse.ArgumentTypeError("value must be non-negative")
+    return parsed
+
+
 def _demo(args: argparse.Namespace) -> int:
     record = run_demo(args.config, args.output)
     summary = {
@@ -93,7 +100,7 @@ def build_parser() -> argparse.ArgumentParser:
     fetch.add_argument("--nucleus", required=True)
     fetch.add_argument("--source", choices=("ensdf", "xundl"), default="ensdf")
     fetch.add_argument("--output-dir", type=Path, required=True)
-    fetch.add_argument("--limit", type=int, default=0)
+    fetch.add_argument("--limit", type=_non_negative_int, default=0)
     fetch.add_argument("--timeout", type=int, default=90)
     fetch.add_argument("--retries", type=int, default=3)
     fetch.set_defaults(handler=_fetch_ensdf)

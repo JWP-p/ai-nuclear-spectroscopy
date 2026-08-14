@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from ai_nuclear_spectroscopy.workflow import run_demo
 
 
@@ -31,3 +33,15 @@ def test_workflow_result_contains_no_absolute_paths(tmp_path: Path) -> None:
     linux_home_prefix = "/" + "home" + "/"
     assert macos_home_prefix not in result
     assert linux_home_prefix not in result
+
+
+def test_workflow_rejects_non_boolean_human_gate(tmp_path: Path) -> None:
+    config = json.loads(Path("configs/demo_workflow.json").read_text())
+    config["input"]["ensdf_path"] = str(
+        Path("examples/synthetic_ensdf/fictional_999xx.ens").resolve()
+    )
+    config["human_gate"]["approved"] = "false"
+    config_path = tmp_path / "config.json"
+    config_path.write_text(json.dumps(config))
+    with pytest.raises(ValueError, match="human_gate.approved"):
+        run_demo(config_path, tmp_path / "output")

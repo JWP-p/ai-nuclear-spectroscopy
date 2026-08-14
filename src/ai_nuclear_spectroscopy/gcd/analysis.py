@@ -36,8 +36,17 @@ def four_region_subtract(
     lengths = {len(array) for array in arrays}
     if len(lengths) != 1 or not lengths or next(iter(lengths)) == 0:
         raise ValueError("All four spectra must have the same non-zero length")
-    if min(scale_x, scale_y, scale_xy) < 0:
-        raise ValueError("Region scale factors must be non-negative")
+    if any(
+        not math.isfinite(value) or value < 0
+        for array in arrays
+        for value in array
+    ):
+        raise ValueError("Raw spectra must contain finite, non-negative counts")
+    if any(
+        not math.isfinite(scale) or scale < 0
+        for scale in (scale_x, scale_y, scale_xy)
+    ):
+        raise ValueError("Region scale factors must be finite and non-negative")
     peak_values, bg_x_values, bg_y_values, bg_xy_values = arrays
     values = tuple(
         p - scale_x * x - scale_y * y + scale_xy * xy

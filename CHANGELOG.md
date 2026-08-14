@@ -8,6 +8,11 @@ All notable project changes will be documented here. The format follows the prin
 
 - Added project governance, default code ownership, contributor onboarding guidance, and release-metadata validation in CI.
 
+### Fixed
+
+- Reject non-boolean human-gate values, negative ENSDF-fetch limits, invalid raw spectra, and negative transition intensities.
+- Preserve zero transition intensities in cascade scoring and parse leading-dot or scientific-notation ENSDF numbers correctly.
+
 ### Planned
 
 - Detector-adapter interfaces and validation fixtures.

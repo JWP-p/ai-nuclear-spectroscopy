@@ -20,6 +20,8 @@ def test_synthetic_ensdf_is_parsed_and_placed() -> None:
 
 def test_half_life_units_and_relations() -> None:
     assert parse_half_life("0.20 NS", "2").value_ps == pytest.approx(200.0)
+    assert parse_half_life(".5 NS").value_ps == pytest.approx(500.0)
+    assert parse_half_life("1.2E3 PS").value_ps == pytest.approx(1200.0)
     assert parse_half_life("> 4 NS").relation == "lower_limit"
     assert parse_half_life("STABLE").relation == "stable"
     assert parse_half_life("").relation == "unknown"
