@@ -14,9 +14,10 @@ from dataclasses import dataclass
 
 from ..models import Dataset, HalfLife, Level, Transition
 
-NUMBER_RE = re.compile(r"[-+]?\d+(?:\.\d+)?")
+NUMBER_PATTERN = r"(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][-+]?\d+)?"
+NUMBER_RE = re.compile(rf"[-+]?{NUMBER_PATTERN}")
 HALF_LIFE_RE = re.compile(
-    r"(?P<rel>[<>])?\s*(?P<value>\d+(?:\.\d+)?)\s*"
+    rf"(?P<rel>[<>])?\s*(?P<value>{NUMBER_PATTERN})\s*"
     r"(?P<unit>AS|FS|PS|NS|US|MS|S|M|H|D|Y)\b",
     re.IGNORECASE,
 )
