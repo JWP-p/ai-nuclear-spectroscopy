@@ -173,12 +173,16 @@ def run_demo(config_path: Path, output_dir: Path) -> WorkflowRecord:
             "incomplete prerequisite evidence"
         )
     selected = next(candidate for candidate in candidates if candidate.candidate_id == selected_id)
+    human_gate = config["human_gate"]
+    approved = human_gate["approved"]
+    if not isinstance(approved, bool):
+        raise ValueError("human_gate.approved must be a JSON boolean")
     approval = require_human_approval(
         candidate_id=selected_id,
-        approved=bool(config["human_gate"]["approved"]),
-        reviewer=config["human_gate"]["reviewer"],
-        scope=config["human_gate"]["scope"],
-        approved_utc=config["human_gate"]["approved_utc"],
+        approved=approved,
+        reviewer=human_gate["reviewer"],
+        scope=human_gate["scope"],
+        approved_utc=human_gate["approved_utc"],
     )
 
     prd_config = config["gcd"]["prd_model"]
